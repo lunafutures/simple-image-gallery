@@ -1,19 +1,33 @@
-const uploadButton = document.getElementById('uploadButton');
-const imageInput = document.getElementById('imageInput');
-const uploadStatus = document.getElementById('uploadStatus');
+const uploadButton = document.getElementById('uploadButton'); // Visible button
+const imageInput = document.getElementById('imageInput'); // Hidden file input
+const uploadStatus = document.getElementById('uploadStatus'); // Status message
 
-uploadButton.addEventListener('click', () => imageInput.click()); // Trigger hidden input
-imageInput.addEventListener('change', () => {
-    uploadButton.innerText = imageInput.files[0].name; // Show selected filename
+// Utility function to set status with color
+function setStatus(message, type) {
+    uploadStatus.innerText = message; // Set the text
+    uploadStatus.className = type; // Set the class (success or error)
+}
+
+// Trigger hidden file input when button is clicked
+uploadButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent form submission
+    imageInput.click(); // Open file picker
 });
 
-// Listen for file selection
+// Automatically upload after file selection
 imageInput.addEventListener('change', () => {
+    // **Early Return if No File is Selected**
+    if (imageInput.files.length === 0) {
+        setStatus('No file selected.', 'error'); // Show error immediately
+        return;
+    }
+
     const formData = new FormData();
     formData.append('image', imageInput.files[0]);
 
-    // Show status
-    uploadStatus.innerHTML = 'Uploading...';
+    // Update button text and status
+    uploadButton.innerText = 'Uploading...';
+    setStatus('Uploading...', ''); // No color during upload
 
     fetch('/upload', {
         method: 'POST',
@@ -21,23 +35,24 @@ imageInput.addEventListener('change', () => {
     })
     .then(response => {
         if (!response.ok) {
-            // Handle server-side HTTP errors
             throw new Error(`Server error: ${response.status} ${response.statusText}`);
         }
         return response.json();
     })
     .then(data => {
-        if (data.message) {
-            uploadStatus.innerHTML = 'Upload successful!';
-            setTimeout(() => {
-                location.reload(); // Reload the page to show the new image
-            }, 1000);
-        } else {
+        if (!data.message) {
             throw new Error('Upload failed without a specific message.');
         }
+
+        setStatus('Upload successful!', 'success');
+        uploadButton.innerText = 'Upload a new image!';
+        setTimeout(() => {
+            location.reload(); // Refresh gallery
+        }, 1000);
     })
     .catch((err) => {
-        console.error('Error uploading the file:', err); // Log error in the console
-        uploadStatus.innerHTML = `Error uploading the file: ${err.message}`; // Show error in UI
+        console.error('Error uploading the file:', err);
+        setStatus(`Error uploading the file: ${err.message}`, 'error');
+        uploadButton.innerText = 'Upload a new image!';
     });
 });

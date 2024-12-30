@@ -32,11 +32,20 @@ form {
     transform: scale(1.1); /* Slight zoom-in effect */
 }
 
-/* Upload status message */
+/* Base styles for status message */
 #uploadStatus {
     margin-top: 10px;
     font-weight: bold;
-    color: #ff6b6b; /* Red for error messages */
+}
+
+/* Success message - green */
+#uploadStatus.success {
+    color: #4caf50; /* Green */
+}
+
+/* Error message - red */
+#uploadStatus.error {
+    color: #ff6b6b; /* Red */
 }
 
 /* Input file style */
