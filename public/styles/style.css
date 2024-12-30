@@ -1,26 +1,66 @@
+/* General body styles for dark mode */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* White text */
 }
 
+/* Form styles */
 form {
     margin-bottom: 20px;
 }
 
+/* Gallery layout */
 .gallery {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
+/* Image styles */
 .gallery img {
     width: 150px;
     height: auto;
     border-radius: 5px;
+    border: 2px solid #ffffff; /* White border for contrast */
+    transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
+/* Hover effect on images */
+.gallery img:hover {
+    transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+/* Upload status message */
 #uploadStatus {
     margin-top: 10px;
-    color: red;
     font-weight: bold;
+    color: #ff6b6b; /* Red for error messages */
+}
+
+/* Input file style */
+input[type="file"] {
+    background-color: #333333; /* Darker input background */
+    color: #ffffff; /* White text */
+    border: 1px solid #ffffff; /* White border */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Button style */
+button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #6200ee; /* Purple button */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #3700b3; /* Darker purple */
 }
