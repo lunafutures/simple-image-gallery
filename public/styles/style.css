@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+#uploadStatus {
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+}
