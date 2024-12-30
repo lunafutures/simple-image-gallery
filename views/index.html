@@ -13,12 +13,16 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required />
-        <button type="submit">Upload</button>
+    <!-- File Input -->
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="imageInput" name="image" accept="image/*" required />
     </form>
+    <div id="uploadStatus"></div>
     <div class="gallery">
         {{gallery}}
     </div>
+
+    <!-- Include External JavaScript -->
+    <script src="/scripts/upload.js"></script>
 </body>
 </html>
