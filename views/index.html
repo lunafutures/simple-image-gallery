@@ -10,11 +10,16 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    <!-- File Input -->
+
+    <!-- Label for File Input -->
     <form id="uploadForm" enctype="multipart/form-data">
+        <label for="imageInput">Upload a file:</label> <!-- Added label -->
         <input type="file" id="imageInput" name="image" accept="image/*" required />
     </form>
+
     <div id="uploadStatus"></div>
+
+    <!-- Image Gallery -->
     <div class="gallery">
         {{gallery}}
     </div>
