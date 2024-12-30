@@ -1,12 +1,11 @@
-const imageInput = document.getElementById('imageInput');
 const uploadButton = document.getElementById('uploadButton');
+const imageInput = document.getElementById('imageInput');
+const uploadStatus = document.getElementById('uploadStatus');
 
 uploadButton.addEventListener('click', () => imageInput.click()); // Trigger hidden input
 imageInput.addEventListener('change', () => {
     uploadButton.innerText = imageInput.files[0].name; // Show selected filename
 });
-
-const uploadStatus = document.getElementById('uploadStatus');
 
 // Listen for file selection
 imageInput.addEventListener('change', () => {
