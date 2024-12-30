@@ -51,9 +51,8 @@ input[type="file"] {
 /* Button style */
 button {
     padding: 10px 15px;
-    margin-left: 10px;
-    background-color: #6200ee; /* Purple button */
-    color: #ffffff; /* White text */
+    background-color: #6200ee;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -62,5 +61,10 @@ button {
 
 /* Button hover effect */
 button:hover {
-    background-color: #3700b3; /* Darker purple */
+    background-color: #3700b3;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #ffffff; /* Subtle focus effect */
 }

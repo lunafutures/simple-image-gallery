@@ -13,8 +13,8 @@
 
     <!-- Label for File Input -->
     <form id="uploadForm" enctype="multipart/form-data">
-        <label for="imageInput">Upload a file:</label> <!-- Added label -->
-        <input type="file" id="imageInput" name="image" accept="image/*" required />
+        <input type="file" id="imageInput" name="image" accept="image/*" required hidden />
+        <button id="uploadButton">Upload a new image!</button>
     </form>
 
     <div id="uploadStatus"></div>
