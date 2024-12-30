@@ -16,14 +16,16 @@ form {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: center; /* Center images */
 }
 
-/* Image styles */
+/* Image styles - default (desktop view) */
 .gallery img {
-    width: 150px;
+    width: 100%; /* Allow flexibility */
+    max-width: 300px; /* Limit width on larger screens */
     height: auto;
     border-radius: 5px;
-    border: 2px solid #ffffff; /* White border for contrast */
+    border: 2px solid #ffffff; /* White border */
     transition: transform 0.2s ease; /* Smooth hover effect */
 }
 
@@ -32,7 +34,7 @@ form {
     transform: scale(1.1); /* Slight zoom-in effect */
 }
 
-/* Base styles for status message */
+/* Upload status message */
 #uploadStatus {
     margin-top: 10px;
     font-weight: bold;
@@ -48,20 +50,12 @@ form {
     color: #ff6b6b; /* Red */
 }
 
-/* Input file style */
-input[type="file"] {
-    background-color: #333333; /* Darker input background */
-    color: #ffffff; /* White text */
-    border: 1px solid #ffffff; /* White border */
-    padding: 5px;
-    border-radius: 5px;
-}
-
-/* Button style */
+/* File input button styles */
 button {
     padding: 10px 15px;
-    background-color: #6200ee;
-    color: #ffffff;
+    margin: 10px 0;
+    background-color: #6200ee; /* Purple button */
+    color: #ffffff; /* White text */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,10 +64,16 @@ button {
 
 /* Button hover effect */
 button:hover {
-    background-color: #3700b3;
+    background-color: #3700b3; /* Darker purple */
 }
 
-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px #ffffff; /* Subtle focus effect */
+/* Mobile-specific styles */
+@media (max-width: 600px) {
+    body {
+        margin: 10px; /* Reduce padding on smaller screens */
+    }
+
+    .gallery img {
+        max-width: 100%; /* Fill the screen width minus padding */
+    }
 }
