@@ -26,12 +26,7 @@ form {
     height: auto;
     border-radius: 5px;
     border: 2px solid #ffffff; /* White border */
-    transition: transform 0.2s ease; /* Smooth hover effect */
-}
-
-/* Hover effect on images */
-.gallery img:hover {
-    transform: scale(1.1); /* Slight zoom-in effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; Smooth hover effect
 }
 
 /* Upload status message */
@@ -62,11 +57,6 @@ button {
     transition: background-color 0.2s ease;
 }
 
-/* Button hover effect */
-button:hover {
-    background-color: #3700b3; /* Darker purple */
-}
-
 /* Mobile-specific styles */
 @media (max-width: 600px) {
     body {
@@ -75,5 +65,19 @@ button:hover {
 
     .gallery img {
         max-width: 100%; /* Fill the screen width minus padding */
+    }
+}
+
+/* Hover effects - ONLY for desktop */
+@media (min-width: 601px) {
+    /* Image hover effect */
+    .gallery img:hover {
+        transform: scale(1.1); /* Slight zoom-in effect */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Add shadow for depth */
+    }
+
+    /* Button hover effect */
+    button:hover {
+        background-color: #3700b3; /* Darker purple */
     }
 }
