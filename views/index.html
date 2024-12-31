@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <h1>{{title}}</h1>
-
-    <!-- Label for File Input -->
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="imageInput" name="image" accept="image/*" required hidden />
-        <button id="uploadButton">Upload a new image!</button>
-    </form>
+    <div class="titleBar">
+        <h2 class="titleName">{{title}}</h2>
+        <!-- Label for File Input -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="imageInput" name="image" accept="image/*" required hidden />
+            <button id="uploadButton">Upload an image!</button>
+        </form>
+    </div>
 
     <div id="uploadStatus"></div>
 

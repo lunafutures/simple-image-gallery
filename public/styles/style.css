@@ -1,14 +1,43 @@
+:root {
+    --primary-color: #6200ee;
+    --image-border: #911678;
+}
+
+.titleBar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.titleBar * {
+    align-self: center;
+}
+
+.titleName {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .titleBar {
+        justify-content: space-around;
+    }
+}
+@media (min-width: 601px) {
+    .titleBar {
+        justify-content: flex-start;
+    }
+
+    .titleName {
+        margin-right: 15px;
+    }
+}
+
 /* General body styles for dark mode */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     background-color: #121212; /* Dark background */
     color: #ffffff; /* White text */
-}
-
-/* Form styles */
-form {
-    margin-bottom: 20px;
 }
 
 /* Gallery layout */
@@ -25,8 +54,8 @@ form {
     max-width: 300px; /* Limit width on larger screens */
     height: auto;
     border-radius: 5px;
-    border: 2px solid #ffffff; /* White border */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; Smooth hover effect
+    border: 2px solid var(--image-border); /* White border */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
 
 /* Upload status message */
@@ -49,7 +78,7 @@ form {
 button {
     padding: 10px 15px;
     margin: 10px 0;
-    background-color: #6200ee; /* Purple button */
+    background-color: var(--primary-color); /* Purple button */
     color: #ffffff; /* White text */
     border: none;
     border-radius: 5px;
