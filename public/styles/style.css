@@ -18,7 +18,7 @@
     }
 
     .gallery img {
-        max-width: 100%; /* Fill the screen width minus padding */
+        max-width: 100%;
     }
 }
 /* Desktop */
@@ -34,7 +34,7 @@
     }
 
     .gallery img {
-        max-width: 400px; /* Fill the screen width minus padding */
+        max-width: 400px;
     }
 
     /* Image hover effect */
@@ -64,59 +64,55 @@
     margin: 0;
 }
 
-/* General body styles for dark mode */
 body {
     font-family: Arial, sans-serif;
     margin: var(--image-gap);
-    background-color: #121212; /* Dark background */
-    color: #ffffff; /* White text */
+    background-color: #121212;
+    color: #ffffff;
 }
 
-/* Gallery layout */
 .gallery {
     display: flex;
     flex-wrap: wrap;
     gap: var(--image-gap);
-    justify-content: center; /* Center images */
+    justify-content: center;
 }
 
-/* Image styles - default (desktop view) */
 .gallery img {
     display: block;
-    width: 100%; /* Allow flexibility */
+    width: 100%;
     height: auto;
     border-radius: 5px;
-    border: 2px solid var(--image-border); /* White border */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    border: 2px solid var(--image-border);
+
+    /* Smooth hover effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
 }
 
-/* Upload status message */
 #uploadStatus {
     margin-bottom: 10px;
     font-weight: bold;
 
-    /* horizontally center */
+    /* Horizontally center text (which will be children of this) using flex */
     display: flex;
     justify-content: center;
 }
 
-/* Success message - green */
 #uploadStatus.success {
-    color: #4caf50; /* Green */
+    color: #4caf50;
 }
 
-/* Error message - red */
 #uploadStatus.error {
-    color: #ff6b6b; /* Red */
+    color: #ff6b6b;
 }
 
-/* File input button styles */
+/* Upload image button */
 button {
     padding: 10px 15px;
     margin: 0;
-    background-color: var(--primary-color); /* Purple button */
-    color: #ffffff; /* White text */
+    background-color: var(--primary-color);
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="/styles/style.css">
 
-    <!-- custom font -->
+    <!-- custom font DynaPuff -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
@@ -15,21 +15,19 @@
 <body>
     <div class="titleBar">
         <h2 class="titleName">{{title}}</h2>
-        <!-- Label for File Input -->
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" id="imageInput" name="image" accept="image/*" required hidden />
+            <!-- proxy upload button that forwards the click to the real input above -->
             <button id="uploadButton">Upload an image!</button>
         </form>
     </div>
 
     <div id="uploadStatus"></div>
 
-    <!-- Image Gallery -->
     <div class="gallery">
         {{gallery}}
     </div>
 
-    <!-- Include External JavaScript -->
     <script src="/scripts/upload.js"></script>
 </body>
 </html>

@@ -3,25 +3,23 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
-// Configurable title
 const TITLE = process.env.TITLE || 'Title Goes HERE';
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Set up upload directory
 const UPLOADS_DIR = process.env.IMAGE_DIR || path.join(__dirname, 'uploads');
 const TEMPLATE_PATH = path.join(__dirname, 'views', 'index.html');
 
-// Serve static files (CSS, JS, etc.)
+// statically serve any files in public/
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Ensure uploads directory exists
+// create upload directory if not exist
 if (!fs.existsSync(UPLOADS_DIR)) {
     fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 }
 
-// Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, UPLOADS_DIR);
@@ -33,10 +31,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Serve static files (uploaded images)
 app.use('/images', express.static(UPLOADS_DIR));
 
-// Upload endpoint
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
@@ -44,8 +40,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.json({ message: 'Upload successful!' });
 });
 
-// Display the gallery
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
     fs.readFile(TEMPLATE_PATH, 'utf8', (err, template) => {
         if (err) {
             console.error('Failed to load HTML template:', err);
@@ -75,7 +70,6 @@ app.get('/', (req, res) => {
     });
 });
 
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Server running at http://${HOST}:${PORT}`);
 });
