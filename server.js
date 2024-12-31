@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,6 +12,9 @@ const app = express();
 
 const UPLOADS_DIR = process.env.IMAGE_DIR || path.join(__dirname, 'uploads');
 const TEMPLATE_PATH = path.join(__dirname, 'views', 'index.html');
+
+// setup automatic logging
+app.use(morgan('combined'));
 
 // statically serve any files in public/
 app.use(express.static(path.join(__dirname, 'public')));
