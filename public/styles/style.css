@@ -1,7 +1,15 @@
 :root {
     --primary-color: #6200ee;
-    --image-border: #911678;
+    --image-border: #332b31;
+
+    @media (max-width: 600px) {
+        --image-gap: 15px;
+    }
+    @media (min-width: 601px) {
+        --image-gap: 20px;
+    }
 }
+
 
 .titleBar {
     display: flex;
@@ -25,7 +33,8 @@
 }
 @media (min-width: 601px) {
     .titleBar {
-        justify-content: flex-start;
+        justify-content: center;
+        margin-bottom: 10px;
     }
 
     .titleName {
@@ -36,7 +45,7 @@
 /* General body styles for dark mode */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: var(--image-gap);
     background-color: #121212; /* Dark background */
     color: #ffffff; /* White text */
 }
@@ -45,24 +54,30 @@ body {
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--image-gap);
     justify-content: center; /* Center images */
 }
 
 /* Image styles - default (desktop view) */
 .gallery img {
+    display: block;
     width: 100%; /* Allow flexibility */
     max-width: 300px; /* Limit width on larger screens */
     height: auto;
     border-radius: 5px;
     border: 2px solid var(--image-border); /* White border */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    box-sizing: border-box;
 }
 
 /* Upload status message */
 #uploadStatus {
-    margin-top: 10px;
+    margin-bottom: 10px;
     font-weight: bold;
+
+    /* horizontally center */
+    display: flex;
+    justify-content: center;
 }
 
 /* Success message - green */
@@ -78,7 +93,7 @@ body {
 /* File input button styles */
 button {
     padding: 10px 15px;
-    margin: 10px 0;
+    margin: 0;
     background-color: var(--primary-color); /* Purple button */
     color: #ffffff; /* White text */
     border: none;
@@ -90,7 +105,7 @@ button {
 /* Mobile-specific styles */
 @media (max-width: 600px) {
     body {
-        margin: 10px; /* Reduce padding on smaller screens */
+        margin: 20px;
     }
 
     .gallery img {
