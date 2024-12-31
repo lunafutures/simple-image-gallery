@@ -1,0 +1,12 @@
+services:
+  myapp:
+    image: simple-image-gallery:latest
+    container_name: simple-image-gallery-container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      NODE_ENV: production
+      TITLE: dockertest
+    restart: unless-stopped

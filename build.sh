@@ -1,0 +1,1 @@
+docker build -t simple-image-gallery:latest .
