@@ -1,15 +1,53 @@
 :root {
     --primary-color: #6200ee;
     --image-border: #332b31;
-
-    @media (max-width: 600px) {
-        --image-gap: 15px;
-    }
-    @media (min-width: 601px) {
-        --image-gap: 20px;
-    }
 }
 
+/* Mobile */
+@media (max-width: 600px) {
+    :root {
+        --image-gap: 15px;
+    }
+
+    .titleBar {
+        justify-content: space-around;
+    }
+
+    body {
+        margin: 20px;
+    }
+
+    .gallery img {
+        max-width: 100%; /* Fill the screen width minus padding */
+    }
+}
+/* Desktop */
+@media (min-width: 601px) {
+    :root {
+        --image-gap: 20px;
+    }
+
+    .titleBar {
+        justify-content: center;
+        margin-bottom: 10px;
+        gap: 15px;
+    }
+
+    .gallery img {
+        max-width: 400px; /* Fill the screen width minus padding */
+    }
+
+    /* Image hover effect */
+    .gallery img:hover {
+        transform: scale(1.1); /* Slight zoom-in effect */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Add shadow for depth */
+    }
+
+    /* Button hover effect */
+    button:hover {
+        background-color: #3700b3; /* Darker purple */
+    }
+}
 
 .titleBar {
     display: flex;
@@ -24,22 +62,6 @@
 
 .titleName {
     margin: 0;
-}
-
-@media (max-width: 600px) {
-    .titleBar {
-        justify-content: space-around;
-    }
-}
-@media (min-width: 601px) {
-    .titleBar {
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    .titleName {
-        margin-right: 15px;
-    }
 }
 
 /* General body styles for dark mode */
@@ -62,7 +84,6 @@ body {
 .gallery img {
     display: block;
     width: 100%; /* Allow flexibility */
-    max-width: 300px; /* Limit width on larger screens */
     height: auto;
     border-radius: 5px;
     border: 2px solid var(--image-border); /* White border */
@@ -100,29 +121,4 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-}
-
-/* Mobile-specific styles */
-@media (max-width: 600px) {
-    body {
-        margin: 20px;
-    }
-
-    .gallery img {
-        max-width: 100%; /* Fill the screen width minus padding */
-    }
-}
-
-/* Hover effects - ONLY for desktop */
-@media (min-width: 601px) {
-    /* Image hover effect */
-    .gallery img:hover {
-        transform: scale(1.1); /* Slight zoom-in effect */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Add shadow for depth */
-    }
-
-    /* Button hover effect */
-    button:hover {
-        background-color: #3700b3; /* Darker purple */
-    }
 }
