@@ -26,7 +26,7 @@
 
     <div class="gallery">
         <% imagePaths.forEach(function(imagePath) { %>
-            <a href="/images/<%- imagePath %>" target="_blank">
+            <a href="/images/<%- imagePath %>" download="<%- imagePath %>">
                 <img src="/images/<%- imagePath %>" alt="<%- imagePath %>">
             </a>
         <% }); %>
