@@ -6,6 +6,7 @@
 /* Mobile */
 @media (max-width: 600px) {
     :root {
+        --debug-computer: "mobile";
         --image-gap: 15px;
     }
 
@@ -24,6 +25,7 @@
 /* Desktop */
 @media (min-width: 601px) {
     :root {
+        --debug-computer: "desktop";
         --image-gap: 20px;
     }
 
