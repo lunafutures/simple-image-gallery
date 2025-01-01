@@ -1,3 +1,4 @@
+const ejs = require('ejs');
 const express = require('express');
 const multer = require('multer');
 const morgan = require('morgan');
@@ -57,18 +58,11 @@ app.get('/', (_req, res) => {
                 return res.status(500).send('Internal Server Error');
             }
 
-            const imageFiles = files.filter(file =>
+            const imagePaths = files.filter(file =>
                 /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
             );
 
-            const gallery = imageFiles
-                .map(file => `<a href="/images/${file}" target="_blank"><img src="/images/${file}" alt="${file}"></a>`)
-                .join('');
-
-            let html = template
-                .replace(/{{title}}/g, TITLE)
-                .replace('{{gallery}}', gallery);
-
+            let html = ejs.render(template, { title: TITLE, imagePaths });
             res.send(html);
         });
     });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title><%= title %></title>
 
     <link rel="stylesheet" href="/styles/style.css">
 
@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="titleBar">
-        <h2 class="titleName">{{title}}</h2>
+        <h2 class="titleName"><%= title %></h2>
         <form id="uploadForm" enctype="multipart/form-data">
             <input type="file" id="imageInput" name="image" accept="image/*" required hidden />
             <!-- proxy upload button that forwards the click to the real input above -->
@@ -25,7 +25,11 @@
     <div id="uploadStatus"></div>
 
     <div class="gallery">
-        {{gallery}}
+        <% imagePaths.forEach(function(imagePath) { %>
+            <a href="/images/<%- imagePath %>" target="_blank">
+                <img src="/images/<%- imagePath %>" alt="<%- imagePath %>">
+            </a>
+        <% }); %>
     </div>
 
     <!-- Must be below everything instead of in head otherwise nodes won't be found -->
