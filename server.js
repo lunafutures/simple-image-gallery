@@ -54,9 +54,14 @@ app.get('/', (_req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        const imagePaths = files.filter(file =>
-            /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
-        );
+        const imagePaths = files
+            .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+            .map(file => ({
+                name: file,
+                time: fs.statSync(path.join(UPLOADS_DIR, file)).ctime
+            }))
+            .sort((a, b) => b.time - a.time) // Sort newest first
+            .map(file => file.name);
 
         res.render(ROOT_VIEW, { title: TITLE, imagePaths });
     });
