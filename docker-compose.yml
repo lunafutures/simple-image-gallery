@@ -1,5 +1,8 @@
 services:
   myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: simple-image-gallery:latest
     container_name: simple-image-gallery-container
     ports:
