@@ -68,7 +68,18 @@ app.get('/', (_req, res) => {
 
 app.get('/healthz', (_req, res) => {
     res.status(200).send('OK');
-})
+console.log('Registered routes:');
+app._router.stack.forEach(layer => {
+    if (layer.route) { // Routes registered directly
+        console.log(`${Object.keys(layer.route.methods)} -> ${layer.route.path}`);
+    } else if (layer.name === 'router') { // Nested routers
+        layer.handle.stack.forEach(subLayer => {
+            if (subLayer.route) {
+                console.log(`${Object.keys(subLayer.route.methods)} -> ${subLayer.route.path}`);
+            }
+        });
+    }
+});
 
 app.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}`);
