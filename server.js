@@ -1,4 +1,3 @@
-const ejs = require('ejs');
 const express = require('express');
 const multer = require('multer');
 const morgan = require('morgan');
@@ -12,7 +11,10 @@ const HOST = process.env.HOST || '0.0.0.0';
 const app = express();
 
 const UPLOADS_DIR = process.env.IMAGE_DIR || path.join(__dirname, 'uploads');
-const TEMPLATE_PATH = path.join(__dirname, 'views', 'index.html');
+const ROOT_VIEW = 'index';
+
+app.set('view engine', 'ejs'); // Uses ejs without needing a require('ejs')
+app.set('views', path.join(__dirname, 'views'));
 
 // setup automatic logging
 app.use(morgan('combined'));
@@ -46,25 +48,17 @@ app.post('/upload', upload.single('image'), (req, res) => {
 });
 
 app.get('/', (_req, res) => {
-    fs.readFile(TEMPLATE_PATH, 'utf8', (err, template) => {
+    fs.readdir(UPLOADS_DIR, (err, files) => {
         if (err) {
-            console.error('Failed to load HTML template:', err);
+            console.error('Failed to read uploads directory:', err);
             return res.status(500).send('Internal Server Error');
         }
 
-        fs.readdir(UPLOADS_DIR, (err, files) => {
-            if (err) {
-                console.error('Failed to read uploads directory:', err);
-                return res.status(500).send('Internal Server Error');
-            }
+        const imagePaths = files.filter(file =>
+            /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
+        );
 
-            const imagePaths = files.filter(file =>
-                /\.(jpg|jpeg|png|gif|webp)$/i.test(file)
-            );
-
-            let html = ejs.render(template, { title: TITLE, imagePaths });
-            res.send(html);
-        });
+        res.render(ROOT_VIEW, { title: TITLE, imagePaths });
     });
 });
 
