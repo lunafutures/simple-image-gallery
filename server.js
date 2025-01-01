@@ -66,6 +66,10 @@ app.get('/', (_req, res) => {
     });
 });
 
+app.get('/healthz', (_req, res) => {
+    res.status(200).send('OK');
+})
+
 app.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}`);
 });
