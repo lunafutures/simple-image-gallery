@@ -16,9 +16,6 @@ COPY public ./public
 COPY views ./views
 COPY server.js ./
 
-RUN chown -R appuser:appgroup /app
-USER appuser
-
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
 	CMD curl --fail http://localhost:3000/healthz || exit 1
 
