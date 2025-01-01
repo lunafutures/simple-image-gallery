@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/styles/style.css">
-    <script src="/scripts/upload.js" defer></script>
+    <link rel="stylesheet" href="<%= basePath('/styles/style.css') %>">
+    <script src="<%= basePath('/scripts/upload.js') %>" defer></script>
 </head>
 <body>
     <div class="titleBar">
@@ -27,8 +27,8 @@
 
     <div class="gallery">
         <% imagePaths.forEach(function(imagePath) { %>
-            <a href="/images/<%- imagePath %>" download="<%- imagePath %>">
-                <img src="/images/<%- imagePath %>" alt="<%- imagePath %>">
+            <a href="<%= basePath(`/images/${imagePath}`) %>" download="<%- imagePath %>">
+                <img src="<%= basePath(`/images/${imagePath}`) %>" alt="<%- imagePath %>">
             </a>
         <% }); %>
     </div>

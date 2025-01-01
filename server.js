@@ -8,6 +8,15 @@ const TITLE = process.env.TITLE || 'Title Goes HERE';
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
+const BASE_PATH = (process.env.BASE_PATH ?? 'gallery').replace(/^\/|\/$/g, ''); // Remove slashes
+function basePath(path='') {
+    const cleanPath = path.replace(/^\/|\/$/g, '');
+    if (!BASE_PATH) {
+        return `/${cleanPath}`;
+    }
+    return `/${BASE_PATH}/${cleanPath}`;
+}
+
 const app = express();
 
 const UPLOADS_DIR = process.env.IMAGE_DIR || path.join(__dirname, 'uploads');
@@ -20,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(morgan('combined'));
 
 // statically serve any files in public/
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(basePath(), express.static(path.join(__dirname, 'public')));
 
 // create upload directory if not exist
 if (!fs.existsSync(UPLOADS_DIR)) {
@@ -36,17 +45,17 @@ const storage = multer.diskStorage({
     },
 });
 
-app.use('/images', express.static(UPLOADS_DIR));
+app.use(basePath('images'), express.static(UPLOADS_DIR));
 
 const upload = multer({ storage: storage });
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post(basePath('upload'), upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }
     res.json({ message: 'Upload successful!' });
 });
 
-app.get('/', (_req, res) => {
+app.get(basePath('/'), (_req, res) => {
     fs.readdir(UPLOADS_DIR, (err, files) => {
         if (err) {
             console.error('Failed to read uploads directory:', err);
@@ -62,12 +71,14 @@ app.get('/', (_req, res) => {
             .sort((a, b) => b.time - a.time) // Sort newest first
             .map(file => file.name);
 
-        res.render(ROOT_VIEW, { title: TITLE, imagePaths });
+        res.render(ROOT_VIEW, { title: TITLE, imagePaths, basePath });
     });
 });
 
-app.get('/healthz', (_req, res) => {
+app.get(basePath('healthz'), (_req, res) => {
     res.status(200).send('OK');
+});
+
 console.log('Registered routes:');
 app._router.stack.forEach(layer => {
     if (layer.route) { // Routes registered directly
@@ -82,5 +93,5 @@ app._router.stack.forEach(layer => {
 });
 
 app.listen(PORT, HOST, () => {
-    console.log(`Server running at http://${HOST}:${PORT}`);
+    console.log(`Server running at http://${HOST}:${PORT} with BASE_PATH=${BASE_PATH}.`);
 });

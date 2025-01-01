@@ -30,7 +30,7 @@ imageInput.addEventListener('change', () => {
     uploadButton.innerText = 'Uploading...';
     setStatus('Uploading...', ''); // No color during upload
 
-    fetch('/upload', {
+    fetch('upload', {
         method: 'POST',
         body: formData
     })
