@@ -36,10 +36,9 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage: storage });
-
 app.use('/images', express.static(UPLOADS_DIR));
 
+const upload = multer({ storage: storage });
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
