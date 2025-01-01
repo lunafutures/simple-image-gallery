@@ -14,6 +14,8 @@ uploadButton.addEventListener('click', (event) => {
     imageInput.click(); // Open file picker
 });
 
+const ORIGINAL_TEXT = uploadButton.innerText;
+
 // Automatically upload after file selection
 imageInput.addEventListener('change', () => {
     // **Early Return if No File is Selected**
@@ -44,7 +46,7 @@ imageInput.addEventListener('change', () => {
         }
 
         setStatus('Upload successful!', 'success');
-        uploadButton.innerText = 'Upload a new image!';
+        uploadButton.innerText = ORIGINAL_TEXT;
         setTimeout(() => {
             location.reload(); // Refresh page
         }, 1000);
@@ -52,6 +54,6 @@ imageInput.addEventListener('change', () => {
     .catch((err) => {
         console.error('Error uploading the file:', err);
         setStatus(`Error uploading the file: ${err.message}`, 'error');
-        uploadButton.innerText = 'Upload a new image!';
+        uploadButton.innerText = ORIGINAL_TEXT;
     });
 });
