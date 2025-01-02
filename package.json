@@ -1,6 +1,6 @@
 {
   "name": "simple-image-gallery",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js --ext js,css,html,json",
