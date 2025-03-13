@@ -11,5 +11,5 @@ services:
       - ./uploads:/app/uploads
     environment:
       NODE_ENV: production
-      TITLE: dockertest
+      TITLE: Simple Gallery
     restart: unless-stopped
